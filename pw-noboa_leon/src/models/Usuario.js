@@ -20,21 +20,19 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId
         }],
     }, {
-        timestamps: true, //añade hora y fecha de actualizacion y registro
-        versionKey: false //oculta el tipo de version que se uso 
+        timestamps: true, //Se añade fecha, hora y registro
+        versionKey: false //Se oculta el tipo de version 
     }
 
 );
 userSchema.statics.encryptPassword = async(password) => {
-    const salt = await bcrypt.genSalt(10) //10veces se aplicara el algoritmo
-    return await bcrypt.hash(password, salt) //cifrando contrasena
+    const salt = await bcrypt.genSalt(10) //Se aplicara el algoritmo unas diez veces
+    return await bcrypt.hash(password, salt) //cifamos la contrasena
 }
 
-//Comparar la contraseña cifrada con la que el usuario escribira en el input para que coincidan
-//si coinciden true y sino false
+//Comparamos la contraseña cifrada con  el usuario 
 userSchema.statics.comparePassword = async(password, receivedPassword) => {
-    //password es la contrasena guardada que esta cifrada y receivedPassword es la que 
-    //el usuario esta escribiendo para ser comparada con la que esta guardada y que coincidan 
+    //password es la contrasena que se uso
     return await bcrypt.compare(password, receivedPassword)
 }
 
