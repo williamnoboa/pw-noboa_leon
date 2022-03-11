@@ -21,7 +21,7 @@ export const getProductsById = async(req, res) => {
 export const putProductsById = async(req, res) => {
     const productoActualizado = await Producto.findByIdAndUpdate(req.params.productById, req.body, {
         //se le pasa 2 datos req.params.productById 
-        new: true //para que devuelva los nuevos datos actualizados 
+        new: true //Devuelve los nuevos datos actualizados 
     })
     res.status(200).json(productoActualizado)
 }
