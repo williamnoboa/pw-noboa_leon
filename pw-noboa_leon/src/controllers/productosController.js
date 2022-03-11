@@ -4,7 +4,7 @@ export const createProducts = async(req, res) => {
     const { nombre, categoria, precio, imgUrl } = req.body
     const newProducto = new Producto({ nombre, categoria, precio, imgUrl })
     const productoGuardado = await newProducto.save();
-    res.status(201).json(productoGuardado); //respuesta al cliente con el objeto ingresado
+    res.status(201).json(productoGuardado); //respuesta del cliente 
 }
 
 
@@ -20,8 +20,7 @@ export const getProductsById = async(req, res) => {
 
 export const putProductsById = async(req, res) => {
     const productoActualizado = await Producto.findByIdAndUpdate(req.params.productById, req.body, {
-        //se le pasa dos datos req.params.productById indica el id a actualizar y req.body donde vamos a 
-        //escribir los nuevos datos
+        //se le pasa 2 datos req.params.productById 
         new: true //para que devuelva los nuevos datos actualizados 
     })
     res.status(200).json(productoActualizado)
