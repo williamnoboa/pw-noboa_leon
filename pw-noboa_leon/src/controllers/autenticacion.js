@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import config from "../config";
 import Roles from "../models/Roles";
 
-//Registro de usuario
+//Registro 
 export const signup = async(res, req) => {
     const { username, email, password, roles } = req.body
 
@@ -15,19 +15,19 @@ export const signup = async(res, req) => {
         password: await User.encryptPassword(password)
     })
 
-    //Comprobando si el usuario envia un rol existente
+    //Comprobando  el usuario
     if (roles) {
         const foundRoles = await Roles.find({ name: { $in: roles } })
-        newUser.roles = foundRoles.map(role => role._id) //buscando id del rol
+        newUser.roles = foundRoles.map(role => role._id) //buscando id rol
     } else {
-        const role = await Roles.findOne({ name: "usuario" }) //asignandole rol predeterminado
+        const role = await Roles.findOne({ name: "usuario" }) //asignandole rol 
         newUser.roles = [role._id];
     }
 
     const savedUser = await newUser.save(); //usuario guardado
     console.log(savedUser)
 
-    //que va a guardar, palabra secreta para generar token, objeto de configuracion
+    //Se guardara, para generar token,object configuracion
     const token = jwt.sign({ id: savedUser._id }, config.secret, {
         expiresIn: 86400 //1 dia de expiracion en sec
     })
@@ -46,7 +46,7 @@ export const signin = async(res, req) => {
     if (!matchPassword) return res.status(401).json({ token: null, message: "Contraseña invalida" })
 
 
-    //Si el usuario y contraseña son correctos se genera el token de ingreso
+    //Usuario y contraseña son correctos se genera el token ingreso
     const token = jwt.sign({ id: userFound._id }, config.secret, {
         expiresIn: 86400
     })
