@@ -8,7 +8,7 @@ import { createRoles } from "./libs/initialSetup";
 const app = express()
 
 app.set('pkg', pkg)
-app.use(express.json()); //Se utiliza el metodo json para que entienda los datos que llegan al servidor
+app.use(express.json()); //Utilizamos el metodo json para que los datos lleguen al servidor
 app.use('/api/productos', productosRoutes)
 app.use('/api/auth', autenticacionRoutes)
 
