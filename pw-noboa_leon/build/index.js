@@ -6,4 +6,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var app = (0, _express["default"])();
 app.listen(3000);
-console.log("oyendo en el puerto", 3000);
+console.log("escuchando el puerto", 3000);
