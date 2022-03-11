@@ -1,7 +1,7 @@
 {
-    "name": "taller",
+    "name": "taller 1",
     "version": "1.0.0",
-    "description": "Taller de Plataformas web",
+    "description": "Taller Plataformas Web",
     "main": "index.js",
     "scripts": {
         "build": "babel src --out-dir build",
@@ -10,7 +10,7 @@
         "start": "node build/index.js"
     },
     "keywords": [],
-    "author": "Daniel Males",
+    "author": "William Noboa",
     "docente": "Guillermo Pizarro",
     "license": "ISC",
     "dependencies": {
