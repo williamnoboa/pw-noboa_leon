@@ -7,13 +7,13 @@ export const verifyToken = async(res, req, next) => {
 
     console.log(token)
 
-    if (!token) return res.status(403).json({ message: "No hay token" })
+    if (!token) return res.status(403).json({ message: "No existe un token" })
     const decoded = jwt.verify(token.config.secret)
 
     req.userId = decoded.id;
 
     const user = await User.findById(req.userId, { password: 0 })
-    if (!user) return res.status(404).json({ message: "Usuario no encontrado" })
+    if (!user) return res.status(404).json({ message: "Usuario no existe" })
 
     next()
 }
